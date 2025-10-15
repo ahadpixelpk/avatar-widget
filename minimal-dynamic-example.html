@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal AI Avatar Integration</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+            background: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            border-left: 4px solid #ffd600;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Avatar Widget - Minimal Integration</h1>
+        
+        <p>This page demonstrates the simplest way to integrate the AI Avatar Widget using data attributes for configuration.</p>
+        
+        <div class="highlight">
+            <p><strong>Key Benefits:</strong></p>
+            <ul>
+                <li>Fully customizable through data attributes</li>
+                <li>No JavaScript coding required</li>
+                <li>Automatically loads all dependencies</li>
+            </ul>
+        </div>
+        
+        <h2>Integration Code</h2>
+        <p>Just add these two lines to your website:</p>
+        <pre><code>&lt;!-- Widget container with your configuration --&gt;
+&lt;div id="ai-avatar-widget" 
+     data-knowledge-id="your_knowledge_id"
+     data-avatar-name="Tyler-insuit-20220721"
+     data-opening-message="Hello! I'm Aiva. How can I help you today?"&gt;&lt;/div&gt;
+
+&lt;!-- Widget loader script --&gt;
+&lt;script src="./assets/avatar-widget-loader.js"&gt;&lt;/script&gt;</code></pre>
+        
+        <h2>Available Configuration Options</h2>
+        <ul>
+            <li><code>data-knowledge-id</code> - Your knowledge base ID (required)</li>
+            <li><code>data-avatar-name</code> - Avatar model to use</li>
+            <li><code>data-opening-message</code> - First message shown to users</li>
+            <li><code>data-position</code> - Position on screen (bottom-right, top-left, etc.)</li>
+            <li><code>data-theme</code> - Color theme (light, dark)</li>
+        </ul>
+        
+        <h2>Live Example</h2>
+        <p>Look for the AI assistant in the bottom-right corner of this page!</p>
+    </div>
+
+    <!-- AI Avatar Widget -->
+    <div id="ai-avatar-widget" 
+         data-knowledge-id="68e604b9028f2f5066e31678"
+         data-avatar-name="Tyler-insuit-20220721"
+         data-opening-message="Hello! I'm Aiva. How can I help you today?"
+         style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+
+    <!-- Widget loader script -->
+    <script src="./assets/avatar-widget-loader.js"></script>
+</body>
+</html>

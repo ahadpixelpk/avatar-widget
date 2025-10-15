@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Avatar Widget - Documentation & Demo</title>
+  <style>
+    :root {
+      --primary: #7c4dff;
+      --primary-light: #b47cff;
+      --primary-dark: #3f1dcb;
+      --secondary: #ff5722;
+      --dark: #263238;
+      --light: #f5f5f5;
+      --code-bg: #f0f0f0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: white;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 30px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    section {
+      padding: 80px 0;
+    }
+    
+    section.alt {
+      background: var(--light);
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2rem;
+    }
+    
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .feature {
+      flex: 1;
+      min-width: 300px;
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .feature h3 {
+      margin-bottom: 15px;
+    }
+    
+    pre {
+      background: var(--code-bg);
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 30px 0;
+    }
+    
+    code {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .integration-steps {
+      counter-reset: steps;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .step {
+      position: relative;
+      margin-bottom: 30px;
+      padding-left: 60px;
+    }
+    
+    .step::before {
+      counter-increment: steps;
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .step h3 {
+      margin-bottom: 10px;
+    }
+    
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+    
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .tab.active {
+      border-bottom: 2px solid var(--primary);
+      font-weight: bold;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .demo-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      header {
+        padding: 40px 0;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+      
+      .feature {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Widget will be loaded here -->
+  <div id="ai-avatar-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+  
+  <header>
+    <div class="container">
+      <h1>AI Avatar Widget</h1>
+      <p>Add an interactive AI assistant to any website with just a few lines of code</p>
+      <a href="#integration" class="cta-button">Get Started</a>
+    </div>
+  </header>
+  
+  <section>
+    <div class="container">
+      <h2>Why Use Our Widget?</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🔌</div>
+          <h3>Easy Integration</h3>
+          <p>Add to any website with a single script tag. No coding experience required.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🚀</div>
+          <h3>Lightweight</h3>
+          <p>Optimized bundle size ensures fast loading times without affecting page performance.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <h3>Customizable</h3>
+          <p>Choose from different avatars and personalize the chat experience to match your brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="alt" id="integration">
+    <div class="container">
+      <h2>Integration Guide</h2>
+      
+      <div class="tabs">
+        <div class="tab active" onclick="showTab('simple')">Simple Integration</div>
+        <div class="tab" onclick="showTab('advanced')">Advanced Integration</div>
+        <div class="tab" onclick="showTab('npm')">NPM Package</div>
+      </div>
+      
+      <div class="tab-content active" id="simple">
+        <p>Add this single snippet to your HTML file, right before the closing <code>&lt;/body&gt;</code> tag:</p>
+        <pre><code>&lt;!-- AI Avatar Widget Integration --&gt;
+&lt;div id="ai-avatar-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  (function(d,s,id,k,a,m){
+    if(d.getElementById(id)) return;
+    var js, fjs = d.getElementsByTagName(s)[0];
+    js = d.createElement(s); js.id = id; js.async = true;
+    js.src = "https://yourusername.github.io/ai-avatar-widget/dist/avatar-widget.umd.js";
+    var link = d.createElement('link');
+    link.rel = 'stylesheet'; 
+    link.href = "https://yourusername.github.io/ai-avatar-widget/dist/ai-avatar.css";
+    d.head.appendChild(link);
+    fjs.parentNode.insertBefore(js, fjs);
+    js.onload = function() {
+      window.renderAvatarWidget('ai-avatar-widget', {
+        knowledgeID: k || '68e604b9028f2f5066e31678', 
+        avatarId: a || 'Tyler-insuit-20220721',
+        openingMessage: m || 'Hello! How can I help you today?'
+      });
+    }
+  })(document,'script','avatar-widget-script','YOUR_KNOWLEDGE_ID','Tyler-insuit-20220721','Hello! How can I help you today?');
+&lt;/script&gt;</code></pre>
+      </div>
+      
+      <div class="tab-content" id="advanced">
+        <p>For more control, you can load all dependencies manually:</p>
+        <pre><code>&lt;!-- Include widget styles --&gt;
+&lt;link rel="stylesheet" href="https://yourusername.github.io/ai-avatar-widget/dist/ai-avatar.css"&gt;
+
+&lt;!-- Widget container --&gt;
+&lt;div id="ai-avatar-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"&gt;&lt;/div&gt;
+
+&lt;!-- Load React dependencies --&gt;
+&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;
+&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Load widget script --&gt;
+&lt;script src="https://yourusername.github.io/ai-avatar-widget/dist/avatar-widget.umd.js"&gt;&lt;/script&gt;
+
+&lt;!-- Initialize widget --&gt;
+&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', function() {
+    window.renderAvatarWidget('ai-avatar-widget', {
+      knowledgeID: 'YOUR_KNOWLEDGE_ID',
+      avatarId: 'Tyler-insuit-20220721',
+      openingMessage: 'Hello! How can I help you today?'
+    });
+  });
+&lt;/script&gt;</code></pre>
+      </div>
+      
+      <div class="tab-content" id="npm">
+        <p>For React applications, you can install from NPM:</p>
+        <pre><code>npm install ai-avatar-widget</code></pre>
+        <p>Then import and use in your component:</p>
+        <pre><code>import { AvatarWidget } from 'ai-avatar-widget';
+import 'ai-avatar-widget/dist/ai-avatar.css';
+
+function App() {
+  return (
+    &lt;div className="App"&gt;
+      &lt;h1&gt;My Website&lt;/h1&gt;
+      
+      &lt;AvatarWidget 
+        knowledgeID="YOUR_KNOWLEDGE_ID"
+        avatarId="Tyler-insuit-20220721"
+        openingMessage="Hello! How can I help you today?"
+      /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="integration-steps">
+        <div class="step">
+          <h3>Add the Script</h3>
+          <p>Include our integration snippet in your HTML file.</p>
+        </div>
+        <div class="step">
+          <h3>Configure</h3>
+          <p>Set your knowledge base ID and customize the avatar appearance.</p>
+        </div>
+        <div class="step">
+          <h3>Test</h3>
+          <p>Verify the widget loads properly and responds to questions.</p>
+        </div>
+        <div class="step">
+          <h3>Deploy</h3>
+          <p>Publish your updated website and let your users interact with the AI assistant!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="alt">
+    <div class="container">
+      <h2>Live Demo</h2>
+      <p style="text-align: center; margin-bottom: 30px;">This page uses the actual widget! Look for the chat button in the bottom-right corner.</p>
+      
+      <div class="demo-container">
+        <h3>Try asking the AI assistant:</h3>
+        <ul>
+          <li>How do I integrate the widget?</li>
+          <li>What customization options are available?</li>
+          <li>How can I change the avatar?</li>
+          <li>Is there any documentation available?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AI Avatar Widget | <a href="https://github.com/yourusername/ai-avatar-widget" style="color: white;">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(tabId) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Deactivate all tabs
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Activate selected tab and content
+      document.getElementById(tabId).classList.add('active');
+      document.querySelector(`.tab:nth-child(${tabId === 'simple' ? 1 : tabId === 'advanced' ? 2 : 3})`).classList.add('active');
+    }
+  </script>
+  
+  <!-- React Dependencies -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- Widget Bundle -->
+  <script src="./dist/avatar-widget.umd.js"></script>
+  
+  <!-- Initialize Widget -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      window.renderAvatarWidget('ai-avatar-widget', {
+        knowledgeID: '68e604b9028f2f5066e31678',
+        avatarId: 'Tyler-insuit-20220721',
+        openingMessage: 'Hi there! I can help you integrate the AI Avatar Widget into your website. What would you like to know?'
+      });
+    });
+  </script>
+</body>
+</html>

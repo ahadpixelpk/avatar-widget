@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Avatar Widget Integration</title>
+    
+    <!-- Widget Styles -->
+    <link rel="stylesheet" href="./assets/ai-avatar.css">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+        
+        h1 {
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        pre {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4a68b1;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .copy-button:hover {
+            background: #3a5491;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .parameter-table th,
+        .parameter-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .parameter-table th {
+            background-color: #f5f5f5;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .required {
+            background-color: #ffd9e0;
+            color: #b71c1c;
+        }
+        
+        .optional {
+            background-color: #e8f0fe;
+            color: #1967d2;
+        }
+        
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Avatar Widget Integration</h1>
+        
+        <div class="section">
+            <h2>Overview</h2>
+            <p>This example demonstrates how to integrate the AI Avatar Widget with fully customizable parameters. Users can easily change the knowledge base, avatar, and opening message without editing the core code.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Step 1: Add CSS and Widget Container</h2>
+            <div class="code-container">
+                <pre><code>&lt;!-- Include widget styles --&gt;
+&lt;link rel="stylesheet" href="https://your-cdn.com/assets/ai-avatar.css"&gt;
+
+&lt;!-- Widget container with data attributes --&gt;
+&lt;div id="ai-chat-widget" 
+     data-knowledge-id="<span style="color:#b71c1c;">your_knowledge_id</span>" 
+     data-avatar-name="Tyler-insuit-20220721" 
+     data-opening-message="Hello! I'm Aiva. How can I help you today?"
+     style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"&gt;&lt;/div&gt;</code></pre>
+                <button class="copy-button" onclick="copyCode(0)">Copy</button>
+            </div>
+            <p>Place the widget container where you want the chat widget to appear. The position can be adjusted using the style attribute.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Step 2: Add Script Dependencies</h2>
+            <div class="code-container">
+                <pre><code>&lt;!-- Load React dependencies --&gt;
+&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;
+&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Load widget script --&gt;
+&lt;script src="https://your-cdn.com/assets/avatar-widget.umd.js"&gt;&lt;/script&gt;</code></pre>
+                <button class="copy-button" onclick="copyCode(1)">Copy</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Step 3: Initialize Widget</h2>
+            <div class="code-container">
+                <pre><code>&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      // Get the container element
+      const container = document.getElementById('ai-chat-widget');
+      
+      // Check if widget function exists
+      if (typeof window.renderAvatarWidget !== 'function') {
+        console.error('Avatar widget function not found!');
+        return;
+      }
+      
+      // Get configuration from data attributes
+      const config = {
+        knowledgeID: container.getAttribute('data-knowledge-id'),
+        avatarId: container.getAttribute('data-avatar-name'),
+        openingMessage: container.getAttribute('data-opening-message')
+      };
+      
+      // Initialize the widget
+      window.renderAvatarWidget('ai-chat-widget', config);
+      
+    } catch (error) {
+      console.error('Error initializing widget:', error);
+    }
+  });
+&lt;/script&gt;</code></pre>
+                <button class="copy-button" onclick="copyCode(2)">Copy</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Step 4: One-Line Integration (Alternative)</h2>
+            <p>For a simplified integration, use this all-in-one snippet:</p>
+            <div class="code-container">
+                <pre><code>&lt;!-- AI Avatar Widget - All-in-one Integration --&gt;
+&lt;div id="ai-chat-widget" data-knowledge-id="<span style="color:#b71c1c;">your_knowledge_id</span>"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  (function(d,s,id){
+    // Create container if not exists
+    var c = d.getElementById(id) || d.createElement('div');
+    if(!d.getElementById(id)) {
+      c.id = id;
+      c.style = "position:fixed;bottom:20px;right:20px;z-index:9999;";
+      d.body.appendChild(c);
+    }
+    
+    // Add stylesheet
+    var l = d.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://your-cdn.com/assets/ai-avatar.css';
+    d.head.appendChild(l);
+    
+    // Add React dependencies
+    function loadScript(src, callback) {
+      var js = d.createElement('script');
+      js.src = src;
+      js.crossOrigin = 'anonymous';
+      js.onload = callback;
+      d.head.appendChild(js);
+    }
+    
+    function initWidget() {
+      // Load widget script
+      var ws = d.createElement('script');
+      ws.src = 'https://your-cdn.com/assets/avatar-widget.umd.js';
+      ws.onload = function() {
+        // Initialize widget with data attributes
+        if(typeof window.renderAvatarWidget === 'function') {
+          window.renderAvatarWidget(id, {
+            knowledgeID: c.getAttribute('data-knowledge-id'),
+            avatarId: c.getAttribute('data-avatar-name') || 'Tyler-insuit-20220721',
+            openingMessage: c.getAttribute('data-opening-message') || 'Hello! I\'m Aiva. How can I help you today?'
+          });
+        }
+      };
+      d.head.appendChild(ws);
+    }
+    
+    // Check if React is already loaded
+    if(typeof React === 'undefined') {
+      loadScript('https://unpkg.com/react@18/umd/react.production.min.js', function() {
+        loadScript('https://unpkg.com/react-dom@18/umd/react-dom.production.min.js', initWidget);
+      });
+    } else if(typeof ReactDOM === 'undefined') {
+      loadScript('https://unpkg.com/react-dom@18/umd/react-dom.production.min.js', initWidget);
+    } else {
+      initWidget();
+    }
+  })(document, 'script', 'ai-chat-widget');
+&lt;/script&gt;</code></pre>
+                <button class="copy-button" onclick="copyCode(3)">Copy</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Configuration Parameters</h2>
+            <table class="parameter-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Data Attribute</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>knowledgeID</code></td>
+                        <td><code>data-knowledge-id</code></td>
+                        <td>Your unique knowledge base identifier</td>
+                        <td><span class="tag required">Required</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>avatarId</code></td>
+                        <td><code>data-avatar-name</code></td>
+                        <td>The avatar to use in the chat widget</td>
+                        <td><span class="tag optional">Optional</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>openingMessage</code></td>
+                        <td><code>data-opening-message</code></td>
+                        <td>The first message shown to users</td>
+                        <td><span class="tag optional">Optional</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>theme</code></td>
+                        <td><code>data-theme</code></td>
+                        <td>Color theme (light or dark)</td>
+                        <td><span class="tag optional">Optional</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>position</code></td>
+                        <td><code>data-position</code></td>
+                        <td>Widget position (bottom-right, bottom-left, etc.)</td>
+                        <td><span class="tag optional">Optional</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>Live Example</h2>
+            <p>Check out the chat widget in the bottom right corner of this page. This is a live example of the integration using the dynamic parameters approach.</p>
+        </div>
+    </div>
+    
+    <!-- Chat Widget Container with custom data attributes -->
+    <div class="chat-widget">
+        <div id="avatar-chat" 
+             data-knowledge-id="68e604b9028f2f5066e31678" 
+             data-avatar-name="Tyler-insuit-20220721"
+             data-opening-message="Hello! I'm Aiva. How can I help you today?"></div>
+    </div>
+    
+    <!-- React Dependencies -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Widget Bundle -->
+    <script src="./assets/avatar-widget.umd.js"></script>
+    
+    <!-- Initialize Widget -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Get the container element
+                const container = document.getElementById('avatar-chat');
+                
+                // Check if widget function exists
+                if (typeof window.renderAvatarWidget !== 'function') {
+                    console.error('Avatar widget function not found!');
+                    return;
+                }
+                
+                // Get configuration from data attributes
+                const config = {
+                    knowledgeID: container.getAttribute('data-knowledge-id'),
+                    avatarId: container.getAttribute('data-avatar-name'),
+                    openingMessage: container.getAttribute('data-opening-message')
+                };
+                
+                // Initialize the widget
+                window.renderAvatarWidget('avatar-chat', config);
+                
+            } catch (error) {
+                console.error('Error initializing widget:', error);
+            }
+        });
+        
+        // Function to copy code snippets
+        function copyCode(index) {
+            const codeBlocks = document.querySelectorAll('pre code');
+            if (index >= codeBlocks.length) return;
+            
+            const range = document.createRange();
+            range.selectNode(codeBlocks[index]);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            
+            const button = document.querySelectorAll('.copy-button')[index];
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = originalText;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!-- 1. Chat Widget Container with Custom Configuration -->
+<div class="chat-widget">
+  <div
+    id="avatar-chat"
+    data-avatar-name="Tyler-insuit-20220721"
+    data-opening-message="Hello! I'm Aiva. How can I help you today?"
+    data-knowledge-base="1bc19e2dbed64daa96d2af68a4d26790"
+  ></div>
+</div>
+
+<!-- 2. React Dependencies -->
+<script
+  crossorigin
+  src="https://unpkg.com/react@18/umd/react.production.min.js"
+></script>
+<script
+  crossorigin
+  src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+></script>
+
+<!-- 3. Widget Bundle -->
+<script src="./assets/avatar-widget.umd.js"></script>
+
+<!-- 4. Widget Initialization Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    try {
+      // Get the widget container element
+      const container = document.getElementById("avatar-chat");
+
+      // Get configuration from data attributes
+      const config = {
+        knowledgeID: container.getAttribute("data-knowledge-base"),
+        avatarId: container.getAttribute("data-avatar-name"),
+        openingMessage: container.getAttribute("data-opening-message"),
+      };
+
+      // Initialize widget
+      if (typeof window.renderAvatarWidget === "function") {
+        window.renderAvatarWidget("avatar-chat", config);
+      } else {
+        console.error("Avatar widget function not found!");
+      }
+    } catch (error) {
+      console.error("Error initializing avatar widget:", error);
+    }
+  });
+</script>
